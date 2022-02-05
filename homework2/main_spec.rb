@@ -2,14 +2,21 @@ require 'rspec'
 require './main.rb'
 
 RSpec.describe "Main methods " do
-  it "greetings for young" do
-    allow_any_instance_of(Kernel).to recieve(:get).and_return("John", "Smith", 10)
-    expect(greetings).to eq("Привет, John Smith. Тебе меньше 18 лет, но начать учиться программировать никогда не поздно!")
-  end
 
   it "greetings for young" do
-    allow_any_instance_of(Kernel).to recieve(:get).and_return("Joahn", "Smith", 19)
-    expect(greetings).to eq("Привет, Joahn Smith. Самое время заняться делом!")
+    name="John"
+    lastname="Smith"
+    age="10"
+    allow_any_instance_of(Kernel).to receive(:gets).and_return(name,lastname,age)
+    expect(greeting).to eq("Привет, John Smith. Тебе меньше 18 лет, но начать учиться программировать никогда не поздно!")
+  end
+
+  it "greetings for adult" do
+    name="Joahn"
+    lastname="Smith"
+    age="19"
+    allow_any_instance_of(Kernel).to receive(:gets).and_return(name,lastname,age)
+    expect(greeting).to eq("Привет, Joahn Smith. Самое время заняться делом!")
   end
 
   it "foobar for first equals 20" do
@@ -28,4 +35,3 @@ RSpec.describe "Main methods " do
     expect(foobar(20,20)).to eq(20)
   end 
 end
-
